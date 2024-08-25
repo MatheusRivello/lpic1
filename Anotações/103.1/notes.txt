@@ -1,0 +1,70 @@
+# Shell padrão é o bash, existem outros (zsh, csh), mas o cobrado na prova é o bash.
+
+# O comando echo imprime uma saída na tela --> echo $PATH, echo "Matheus"
+echo "Hello, World!"
+
+# Validando se um comando é interno.
+type echo && type tar && type cd
+
+# Mostra o diretório atual
+pwd 
+
+# Muda para outro diretório
+cd /tmp
+
+# Lista o conteúdo de um diretório. flags -a --> arquivos ocultos, -l --> forma detalhada
+ls -la
+
+###############################################################################################
+
+# Variáveis de ambiente são variáveis locais do shell, declaração --> NOME_VARIAVEL=valor
+NOME="MATHEUS"
+
+# Exportar a variável para que se torne global --> export NOME_VARIAVEL
+export NOME
+
+Comando "set" mostra todas as variáveis locais e exportadas de forma global, comando "env" só as globais
+set && env
+
+# Principais Variáveis de Ambiente
+
+    É importante conhecer a função de algumas variáveis de ambiente existentes no sistema, as principais são:
+        DISPLAY: Indica às aplicações gráficas onde as janelas deverão ser exibidas. Será estudado no Tópico 106.
+        HISTFILE: Arquivo do histórico de comandos
+        HISTFILESIZE: Quantidade de linhas/comandos armazenados no arquivo de histórico
+        HOME: Indica o diretório do usuário atual
+        LOGNAME e USER: Nome do usuário atual
+        PATH: Diretórios em que o Linux irá procurar por arquivos executáveis
+        PS1: Aparência do prompt do shell.
+        PWD: Diretório atual
+        OLDPWD: Diretório anterior
+
+
+Comando "echo $$" mostra o PID do processo atual
+
+Comando "echo $!" mostra o PID do último processo executado em backgroud
+
+Comando "echo $?" mostra o exit code do último processo executado. 0 é sucesso, diferente de 0 pode ser considerado erro.
+
+~ contém o valor do home do usuário atual
+
+---
+
+Execução de comando sequencial
+    "ls ; date" --> Vai executar independente se algum falhar ou não
+
+    "ls /tmp/teste && echo Linux" --> & só executa o segundo se o primeiro der certo
+
+    "ls /tmp/teste || echo Linux" --> & só executa o segundo se o primeiro der erro
+
+---
+
+Comando "history" verifica o histórico
+    comando !! executa o ultimo comando
+    comando !100 executa o comando 100 do histórico
+    comando "history -c" limpa o arquivo de histórico --> .bash_history na home do usuário
+
+Obtendo ajuda
+    Comando man para manual, com parâmetro -k procura comandos. man -k "list"
+    whatis ls
+    apropos "list" --> igual ao man -k
